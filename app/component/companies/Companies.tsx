@@ -14,6 +14,7 @@ export type Company = {
   image: StaticImageData;
   href: string;
   subheading?: string;
+  external?: boolean;
 };
 
 const COMPANIES: Company[] = [
@@ -50,7 +51,8 @@ const COMPANIES: Company[] = [
     description:
       "MT Autozone specializes in professional car polishing and detailing specialists focused on enhancing vehicle appearance through quality workmanship, careful detailing processes, and premium finishing solutions for customers seeking a cleaner, refined, showroom ready appearance.",
     image: mtAutozoneImg,
-    href: "/companies/mt-autozone",
+    href: "https://mtautozone.com",
+    external: true,
   },
 ];
 
@@ -196,6 +198,8 @@ function CompanyCard({ company }: { company: Company }) {
         {/* ================= LEARN MORE ================= */}
         <Link
           href={company.href}
+          target={company.external ? "_blank" : undefined}
+          rel={company.external ? "noopener noreferrer" : undefined}
           className="
             font-inter
             flex

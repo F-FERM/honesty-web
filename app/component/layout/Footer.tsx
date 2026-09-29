@@ -22,7 +22,7 @@ const COMPANY_LINKS = [
   { label: "Cleaning Service", href: "/companies/cleaning" },
   { label: "Green Oasis Rent Car", href: "/companies/green-oasis" },
   { label: "Valet Parking", href: "/companies/valet-parking" },
-  { label: "MT Auto Zone", href: "/companies/mt-autozone" },
+  { label: "MT Auto Zone", href: "https://mtautozone.com", external: true },
   { label: "Honest World Motors", href: "/companies/world-motors" },
 ];
 
@@ -38,7 +38,7 @@ const SOCIALS = [
   { label: "Twitter", href: "#", Icon: IconBrandTwitter },
 ];
 
-type LinkItem = { label: string; href: string };
+type LinkItem = { label: string; href: string; external?: boolean };
 
 function LinkColumn({ title, links }: { title: string; links: LinkItem[] }) {
   return (
@@ -55,6 +55,8 @@ function LinkColumn({ title, links }: { title: string; links: LinkItem[] }) {
           <li key={link.label}>
             <Link
               href={link.href}
+              target={link.external ? "_blank" : undefined}
+              rel={link.external ? "noopener noreferrer" : undefined}
               className="font-poppins text-[#464646] text-[15px] transition-colors duration-200 hover:text-[#0D85CC] xl:text-[18px]"
               style={{
                 fontWeight: 400,

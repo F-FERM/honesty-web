@@ -87,7 +87,7 @@ export default function WhyChooseCleaning({
 
           {/* ================= CONTACT NOW BUTTON ================= */}
           <a
-            href="#contact"
+            href="/contact-us"
             className="
               mt-1 flex w-fit h-[50px] items-center justify-center gap-[10px]
               whitespace-nowrap
