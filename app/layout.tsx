@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MT Autozone",
-  description: "MT Autozone",
+  title: "Honesty Perfection",
+  description: "Honesty Perfection",
 };
 
 export default function RootLayout({
