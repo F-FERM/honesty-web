@@ -161,7 +161,7 @@ export default async function CompanyPage({ params }: { params: Promise<{ slug: 
         imageAlt={data.title}
         subheading={data.subheading}
         description={data.description}
-        contactHref={`/companies/${slug}`}
+        contactHref={`/contact-us`}
       />
       <OurCleaningServices
         title={data.servicesTitle}
