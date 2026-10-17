@@ -69,7 +69,7 @@ const companyData = {
       { title: "Dedicated Driver Supply", description: "Reliable drivers are available for different vehicle categories and requirements, providing professional driving support with emphasis on punctuality, road safety, responsible vehicle handling, and service quality." },
       { title: "Heavy Vehicle Drivers", description: "Experienced heavy vehicle drivers are available to support transportation and operational requirements, with a focus on responsible driving, vehicle handling, safety awareness, and dependable service." },
       { title: "Recovery Team Drivers", description: "Skilled recovery team drivers support vehicle movement and recovery operations with responsible handling, timely coordination, and careful execution to help manage vehicle related requirements efficiently and safely." },
-      { title: "Recovery Team Drivers", description: "Dedicated drivers assist showrooms with vehicle movement, positioning, delivery support, and customer requirements, ensuring vehicles are handled professionally while maintaining an organized and presentable showroom operation." },
+      { title: "Showroom Driver Support", description: "Dedicated drivers assist showrooms with vehicle movement, positioning, delivery support, and customer requirements, ensuring vehicles are handled professionally while maintaining an organized and presentable showroom operation." },
     ],
          industriesTitle: "Where We Provide Valet Services",
 
