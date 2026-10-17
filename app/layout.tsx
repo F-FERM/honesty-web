@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Poppins, Geist } from "next/font/google";
+import { Geist_Mono, Poppins, Geist, Amiri } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
@@ -10,7 +10,11 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
-
+const amiri = Amiri({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-amiri",
+});
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
@@ -28,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={cn("font-sans", geist.variable)}>
-      <body className={`${poppins.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${poppins.variable} ${geistMono.variable} ${amiri.variable} antialiased`}>
         {children}
       </body>
     </html>

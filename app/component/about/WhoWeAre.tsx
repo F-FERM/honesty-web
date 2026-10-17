@@ -81,7 +81,9 @@ export default function WhoWeAre() {
           className="font-poppins text-[#626262] text-[14px] leading-[1.6] sm:text-base sm:leading-6"
           style={{ fontWeight: 400 }}
         >
-         Honesty &amp; Perfection combines skilled professionals, advanced technology, customer-focused service, and trusted experience to deliver reliable solutions across the UAE. 
+          Honesty &amp; Perfection combines skilled professionals, advanced
+          technology, customer-focused service, and trusted experience to
+          deliver reliable solutions across the UAE.
         </p>
       </div>
 
@@ -125,30 +127,45 @@ export default function WhoWeAre() {
               }}
             />
 
-            {/* Hover: big icon slides in on the right (144 x 144) */}
-            <Image
-              src={item.hoverIcon}
-              alt=""
+            {/*
+              Hover icon: starts exactly where the small icon tile sits
+              (same left / top / size), then grows and travels to the
+              top-right corner as the big icon.
+              Mobile : starts 24px / 40px  ->  96px icon
+              sm+    : starts 52px / 74px  ->  144px icon
+            */}
+            <div
               aria-hidden="true"
-              width={144}
-              height={144}
               className="
-                pointer-events-none absolute right-2 top-0 z-[3]
-                h-24 w-24 sm:h-[144px] sm:w-[144px]
-                translate-x-6 opacity-0
-                transition-all duration-500 ease-out
-                group-hover:translate-x-0 group-hover:opacity-100
+                pointer-events-none absolute z-[3] opacity-0
+                left-6 top-10 h-[41px] w-[39px]
+                sm:left-[52px] sm:top-[74px]
+                transition-[left,top,width,height,opacity]
+                duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+                group-hover:opacity-100
+                group-hover:left-[calc(100%_-_104px)] group-hover:top-0
+                group-hover:h-24 group-hover:w-24
+                sm:group-hover:left-[calc(100%_-_152px)]
+                sm:group-hover:h-[144px] sm:group-hover:w-[144px]
               "
-            />
+            >
+              <Image
+                src={item.hoverIcon}
+                alt=""
+                fill
+                sizes="144px"
+                className="object-contain"
+              />
+            </div>
 
             {/* Content: padding 74 / 29 / 33 / 52 at full size */}
             <div className="relative z-10 flex flex-col gap-[13px] px-6 pb-8 pt-10 sm:pb-[33px] sm:pl-[52px] sm:pr-[29px] sm:pt-[74px]">
-              {/* Small icon tile 39 x 41 (hides on hover, keeps its space) */}
+              {/* Small icon tile 39 x 41 (fades out fast as the big icon grows from it) */}
               <div
                 className="
                   flex h-[41px] w-[39px] shrink-0 items-center justify-center
-                  rounded-[10px] bg-[#08507A] p-[6px]
-                  transition-opacity duration-300
+                  rounded-[10px] bg-[#08507A]
+                  transition-opacity duration-150
                   group-hover:opacity-0
                 "
               >

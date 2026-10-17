@@ -52,8 +52,7 @@ export default function WhyChooseCleaning({
           </h2>
 
           {/* ================= POINTS: 513 wide, gap 29 ================= */}
-          <ul className="flex w-full max-w-[513px] flex-col gap-4 sm:gap-5 lg:gap-[29px]">
-            {reasons.map((reason, index) => {
+<ul className="flex w-full max-w-[640px] flex-col gap-4 sm:gap-5 lg:gap-[29px]">            {reasons.map((reason, index) => {
               // Each point can bring its own icon; fall back to the check icon
               const item = typeof reason === "string" ? { text: reason } : reason;
               const icon = item.icon ?? checkIcon;

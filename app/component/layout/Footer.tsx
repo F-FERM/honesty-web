@@ -22,7 +22,7 @@ const COMPANY_LINKS = [
   { label: "Cleaning Service", href: "/companies/cleaning" },
   { label: "Green Oasis Rent Car", href: "/companies/green-oasis" },
   { label: "Valet Parking", href: "/companies/valet-parking" },
-  { label: "MT Auto Zone", href: "https://mtautozone.com", external: true },
+  { label: "MT Auto Zone", href: "https://mtautozone.com/", external: true },
   { label: "Honest World Motors", href: "/companies/world-motors" },
 ];
 
