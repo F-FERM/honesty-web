@@ -51,7 +51,7 @@ const COMPANIES: Company[] = [
     description:
       "MT Autozone specializes in professional car polishing and detailing specialists focused on enhancing vehicle appearance through quality workmanship, careful detailing processes, and premium finishing solutions for customers seeking a cleaner, refined, showroom ready appearance.",
     image: mtAutozoneImg,
-    href: "https://mtautozone.com",
+    href: "https://mtautozone.com/",
     external: true,
   },
 ];
@@ -78,18 +78,29 @@ function CompanyCard({ company }: { company: Company }) {
       {/* ======================================================
           IMAGE
       ====================================================== */}
-      <Image
-        src={company.image}
-        alt={company.title}
-        fill
-        sizes="
-          (min-width: 1465px) 447px,
-          (min-width: 1024px) 33vw,
-          (min-width: 640px) 50vw,
-          100vw
-        "
-        className="absolute inset-0 z-0 object-cover"
-      />
+    <Image
+  src={company.image}
+  alt={company.title}
+  fill
+  sizes="
+    (min-width: 1465px) 447px,
+    (min-width: 1024px) 33vw,
+    (min-width: 640px) 50vw,
+    100vw
+  "
+  className="
+    absolute
+    inset-0
+    z-0
+    object-cover
+    transition-transform
+    duration-500
+    ease-out
+    will-change-transform
+    group-hover:scale-105
+    group-focus-within:scale-105
+  "
+/>
 
       {/* ======================================================
           BASE GRADIENT

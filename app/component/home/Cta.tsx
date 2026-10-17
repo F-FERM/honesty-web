@@ -103,8 +103,8 @@ export default function CTA() {
             "
             style={{ fontWeight: 500, fontSize: "16px", lineHeight: "100%" }}
           >
-            <Phone size={16} aria-hidden="true" className="shrink-0" />
-            Contact Us
+            <Phone size={18} aria-hidden="true" className="shrink-0" />
+            Contact Now
           </Link>
 
           <Link

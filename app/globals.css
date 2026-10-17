@@ -122,6 +122,7 @@
 /* Poppins is loaded via next/font/google in layout.tsx */
 @theme inline {
   --font-sans: var(--font-poppins);
+   --font-amiri: var(--font-amiri);
 }
 
 @layer base {

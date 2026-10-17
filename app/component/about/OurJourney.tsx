@@ -40,6 +40,47 @@ const CHECKLIST = [
   "Advanced Equipment",
 ];
 
+/*
+  Only affects 800px - 1280px (MacBook / small laptop).
+  Below 800px and above 1280px, the original Tailwind classes apply untouched.
+  Card styling (badge, fonts, padding, height) stays exactly as in the original;
+  only the column widths, the gap and the arrows are adjusted here.
+  Plain CSS + !important is used so it works on any Tailwind version.
+*/
+const MACBOOK_CSS = `
+@media (min-width: 800px) and (max-width: 1280px) {
+  .oj-row {
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    gap: clamp(64px, 9vw, 120px) !important;
+  }
+  .oj-right {
+    width: clamp(330px, 31vw, 420px) !important;
+    flex-shrink: 0 !important;
+    margin-right: 40px !important;
+    justify-content: flex-end !important;
+  }
+  .oj-arrow {
+    display: block !important;
+    top: 64px !important;
+    width: clamp(48px, 5vw, 64px) !important;
+    height: 108px !important;
+  }
+  .oj-arrow-l {
+    left: calc(-1 * clamp(48px, 5vw, 64px) - 8px) !important;
+    right: auto !important;
+  }
+  .oj-arrow-r {
+    right: calc(-1 * clamp(48px, 5vw, 64px) - 8px) !important;
+    left: auto !important;
+  }
+}
+@media (min-width: 800px) and (max-width: 999px) {
+  .oj-checks { grid-template-columns: minmax(0, 1fr) !important; }
+}
+`;
+
 export default function OurJourney() {
   return (
     <section
@@ -49,8 +90,11 @@ export default function OurJourney() {
         paddingBottom: "clamp(56px, 6vw, 96px)",
       }}
     >
+      <style>{MACBOOK_CSS}</style>
+
       <div
         className="
+          oj-row
           mx-auto
           flex
           w-full
@@ -64,7 +108,7 @@ export default function OurJourney() {
         "
       >
         {/* ================= LEFT SECTION ================= */}
-        <div className="flex w-full min-w-0 max-w-[602px] flex-col gap-5 lg:shrink-0">
+        <div className="oj-left flex w-full min-w-0 max-w-[602px] flex-col gap-5 lg:shrink-0">
           <h2
             className="
               font-poppins
@@ -92,12 +136,28 @@ export default function OurJourney() {
               letterSpacing: "0%",
             }}
           >
-          At Honesty &amp; Perfection, we are built on a simple belief which is that every service should be delivered with honesty, professionalism, and a commitment to excellence. Our group brings together diverse, specialized solutions designed to serve individuals, businesses, showrooms, facilities, and automotive partners across the UAE. Our expertise extends across professional cleaning and facility support, valet parking and driver solutions, car rental, and specialized automotive care. From trained cleaning teams supporting offices, buildings, and showrooms to reliable drivers for private and business requirements, we provide dependable solutions tailored to every need. In the automotive sector, our expertise covers car detailing, polishing, ceramic coating, window tinting, and premium vehicle appearance care. Through our B2B and B2C services, we bring together skilled teams, industry experience, and customer focused solutions under one trusted group. 
+            At Honesty &amp; Perfection, we are built on a simple belief which is
+            that every service should be delivered with honesty,
+            professionalism, and a commitment to excellence. Our group brings
+            together diverse, specialized solutions designed to serve
+            individuals, businesses, showrooms, facilities, and automotive
+            partners across the UAE. Our expertise extends across professional
+            cleaning and facility support, valet parking and driver solutions,
+            car rental, and specialized automotive care. From trained cleaning
+            teams supporting offices, buildings, and showrooms to reliable
+            drivers for private and business requirements, we provide
+            dependable solutions tailored to every need. In the automotive
+            sector, our expertise covers car detailing, polishing, ceramic
+            coating, window tinting, and premium vehicle appearance care.
+            Through our B2B and B2C services, we bring together skilled teams,
+            industry experience, and customer focused solutions under one
+            trusted group.
           </p>
 
           {/* ================= CHECKLIST ================= */}
           <div
             className="
+              oj-checks
               mt-2
               grid
               w-full
@@ -109,10 +169,7 @@ export default function OurJourney() {
             "
           >
             {CHECKLIST.map((item) => (
-              <div
-                key={item}
-                className="flex items-center gap-3"
-              >
+              <div key={item} className="flex items-center gap-3">
                 {/* Imported check image */}
                 <Image
                   src={checkIcon}
@@ -120,12 +177,7 @@ export default function OurJourney() {
                   width={24}
                   height={24}
                   aria-hidden="true"
-                  className="
-                    h-6
-                    w-6
-                    shrink-0
-                    object-contain
-                  "
+                  className="h-6 w-6 shrink-0 object-contain"
                 />
 
                 <span
@@ -150,6 +202,7 @@ export default function OurJourney() {
         {/* ================= RIGHT SECTION ================= */}
         <div
           className="
+            oj-right
             flex
             w-full
             min-w-0
@@ -160,6 +213,7 @@ export default function OurJourney() {
         >
           <div
             className="
+              oj-list
               relative
               flex
               w-full
@@ -170,21 +224,19 @@ export default function OurJourney() {
             "
           >
             {MILESTONES.map((item, i) => (
-              <div
-                key={item.year}
-                className="relative  cursor-pointer"
-              >
+              <div key={item.year} className="relative cursor-pointer">
                 {/* ================= ARROW ================= */}
                 {i < MILESTONES.length - 1 && (
                   <div
-                    className="
+                    className={`
+                      oj-arrow
+                      ${i % 2 === 0 ? "oj-arrow-l" : "oj-arrow-r"}
                       pointer-events-none
                       absolute
                       z-10
                       hidden
                       lg:block
-                     
-                    "
+                    `}
                     style={{
                       top: "clamp(30px, 4vw, 50px)",
                       width: "clamp(60px, 8vw, 120px)",
@@ -207,6 +259,7 @@ export default function OurJourney() {
                 {/* ================= MILESTONE CARD ================= */}
                 <div
                   className="
+                    oj-card
                     group
                     flex
                     min-h-[100px]
@@ -234,6 +287,7 @@ export default function OurJourney() {
                   {/* ================= YEAR BADGE ================= */}
                   <div
                     className="
+                      oj-badge
                       flex
                       h-[60px]
                       w-[72px]
@@ -253,6 +307,7 @@ export default function OurJourney() {
                   >
                     <span
                       className="
+                        oj-year
                         font-poppins
                         text-[16px]
                         text-white
@@ -275,6 +330,7 @@ export default function OurJourney() {
                   <div className="flex min-w-0 flex-col gap-2">
                     <h3
                       className="
+                        oj-title
                         font-poppins
                         text-[16px]
                         text-white
@@ -294,6 +350,7 @@ export default function OurJourney() {
 
                     <p
                       className="
+                        oj-text
                         font-poppins
                         text-[14px]
                         text-[#F6F6F6]
