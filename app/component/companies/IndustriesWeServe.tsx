@@ -22,9 +22,10 @@ type Props = {
 
 function IndustryList({ items }: { items: string[] }) {
   return (
-    <ul className="flex flex-col gap-5 sm:gap-8 lg:gap-[47px]">
+    <ul className="flex min-w-0 flex-col gap-3 sm:gap-5 lg:gap-[27px]">
       {items.map((item) => (
-        <li key={item} className="flex items-center gap-3">
+        // items-start keeps the check icon at the top if the text wraps
+        <li key={item} className="flex min-w-0 items-start gap-3">
           <Image
             src={checkIcon}
             alt=""
@@ -34,7 +35,19 @@ function IndustryList({ items }: { items: string[] }) {
             className="h-6 w-6 shrink-0 sm:h-7 sm:w-7"
           />
           <span
-            className="font-poppins text-[#E8E8E8] text-[16px] leading-[1.3] sm:text-[18px]"
+            // min-w-0 + break-words lets long labels wrap instead of overflowing
+            className="
+              font-poppins
+              min-w-0
+              break-words
+              text-[#E8E8E8]
+              text-[15px]
+              leading-[1.4]
+              min-[400px]:text-[16px]
+              sm:text-[16px]
+              md:text-[17px]
+              lg:text-[18px]
+            "
             style={{
               fontWeight: 400,
               letterSpacing: "0%",
@@ -55,7 +68,7 @@ export default function IndustriesWeServe({
 }: Props) {
   return (
     <section
-      className="w-full bg-[#0D85CC] px-4 sm:px-8 lg:px-12 xl:px-16"
+      className="w-full overflow-x-hidden bg-[#0D85CC] px-4 sm:px-8 lg:px-12 xl:px-16"
       style={{
         paddingTop: "clamp(56px, 8vw, 90px)",
         paddingBottom: "clamp(40px, 5vw, 50px)",
@@ -69,9 +82,9 @@ export default function IndustriesWeServe({
           paddingBottom: "clamp(24px, 3vw, 40px)",
         }}
       >
-        {/* ================= HEADING (dynamic) ================= */}
+        {/* ================= HEADING ================= */}
         <h2
-          className="font-poppins text-center text-white text-[clamp(28px,4vw,46px)]"
+          className="font-poppins text-center text-white text-[clamp(26px,4vw,46px)]"
           style={{
             fontWeight: 600,
             lineHeight: "110%",
@@ -81,8 +94,23 @@ export default function IndustriesWeServe({
           {title}
         </h2>
 
-        {/* ================= POINTS: 1 column on phones, 2 from sm ================= */}
-        <div className="grid w-full grid-cols-1 gap-y-5 sm:grid-cols-2 sm:gap-x-8 lg:gap-x-16">
+        {/*
+          POINTS
+          < 640px : 1 column (both lists stacked, same 12px rhythm as the list)
+          640px+  : left list pinned to the left edge, right list pinned to
+                    the right edge (justify-between); 40px minimum gap
+        */}
+        <div
+          className="
+            grid
+            w-full
+            grid-cols-1
+            gap-y-3
+            sm:grid-cols-[auto_auto]
+            sm:justify-between
+            sm:gap-x-10
+          "
+        >
           <IndustryList items={industriesLeft} />
           <IndustryList items={industriesRight} />
         </div>

@@ -2,8 +2,8 @@ import CompanyDetailHero from "@/app/component/companies/CompanyDetailHero";
 import { notFound } from "next/navigation";
 import cleaningImg from "../../../../public/images/home/company1.png";
 import valetImg from "../../../../public/images/home/company2.png";
-import worldMotorsImg from "../../../../public/images/home/company3.png";
-import greenOasisImg from "../../../../public/images/home/company4.png";
+import worldMotorsImg from "../../../../public/images/detailpage/motors.png";
+import greenOasisImg from "../../../../public/images/detailpage/oasis.png";
 import mtAutozoneImg from "../../../../public/images/home/company5.png";
 
 import IndustriesWeServe from "@/app/component/companies/IndustriesWeServe";
@@ -24,6 +24,12 @@ import valetIcon6 from "../../../../public/images/detailpage/v6.png";
 import valetIcon7 from "../../../../public/images/detailpage/v7.png";
 import valetIcon8 from "../../../../public/images/detailpage/v8.png";
 import valetIcon9 from "../../../../public/images/detailpage/v9.png";
+import valetIcon15 from "../../../../public/images/detailpage/u1.png";
+import valetIcon16 from "../../../../public/images/detailpage/u2.png";
+import valetIcon17 from "../../../../public/images/detailpage/u3.png";
+import valetIcon18 from "../../../../public/images/detailpage/u4.png";
+import valetIcon19 from "../../../../public/images/detailpage/u5.png";
+
 
 
 
@@ -107,22 +113,30 @@ reasons: [
   "green-oasis": {
     title: "Green Oasis",
     image: greenOasisImg,
-    subheading: "Reliable and flexible car rental and mobility solutions for visitors, residents, and businesses.",
-    description: "Green Oasis offers reliable and flexible car rental and mobility solutions designed to meet the needs of visitors, residents, and businesses. With a diverse fleet of well-maintained vehicles, we ensure a comfortable and hassle-free driving experience, backed by exceptional customer service and competitive rates.",
-    servicesTitle: "Our Mobility Solutions",
+    subheading: "Professional Car Rental Solutions for Personal & Business Travel.",
+    description: "Green Oasis is a professional company that offers convenient and flexible car rental services all over the UAE, offering flexible vehicle rental solutions for individuals, professionals, and businesses. The main goal of our company is to facilitate the processes of traveling, commuting, and other personal and business mobility activities by providing customers with high-quality vehicles, flexible rental terms, and professional service. No matter whether customers need a vehicle for daily commutes, short-term traveling, long-term traveling, or other business needs, we are always striving to provide rental solutions that will help people to cope with various mobility challenges. By combining the vehicle quality, convenience, and other factors into a single package, Green Oasis offers customers effective car rental solutions in the UAE. The customer oriented approach guarantees that all customers' needs will be met in a professional way.",
+    servicesTitle: "Our Services",
     services: [
-      { title: "Daily & Weekly Rentals", description: "Flexible short-term car rental options for visitors and residents." },
-      { title: "Long-Term Leasing", description: "Cost-effective long-term leasing solutions for individuals and businesses." },
-      { title: "Corporate Fleet Solutions", description: "Reliable vehicle fleets tailored for corporate operations and logistics." },
-      { title: "Chauffeur Services", description: "Professional chauffeur services for a comfortable and stress-free journey." }
-    ],
-         industriesTitle: "Industries We Serve",
+      { title: "Long-Term Car Rental", description: "Green Oasis offers flexible rental solutions for both individuals and businesses to meet their longer term transportation needs and is an easy way to provide mobility for individuals and companies based in the UAE." },
+      { title: "Personal & Business Mobility", description: "Green Oasis offers car rental solutions that cater to both personal transportation and professional mobility requirements. The flexible and efficient solutions offered by Green Oasis make car rentals a practical option for transportation." },
+      { title: "Short-Term Car Rental", description: "Green Oasis short term car rental solutions allow for convenient transportation for customers who require a vehicle on a limited period. The flexible car rental solutions from Green Oasis offer practical car rental solutions for customers moving within the UAE." },
+      { title: "Professional Mobility Solutions", description: "Green Oasis aims to provide practical transportation options that fit different schedules and mobility requirements, helping customers manage their journeys with greater convenience." },
+            { title: "Convenient Vehicle Hire Services", description: "Our vehicle hire services provide a practical solution for customers looking for convenient transportation across the UAE. Green Oasis focuses on simplifying the rental experience through flexible options, quality vehicles, and customer-oriented assistance." }
 
-    industriesLeft: ["Tourism & Hospitality", "Corporate Businesses", "Event Management"],
-    industriesRight: ["Logistics & Delivery", "Aviation & Transport", "Individual Residents"],
-    whyChooseTitle: "Why Choose Green Oasis?",
-    reasons: ["Diverse fleet of well-maintained vehicles", "Competitive rates and flexible terms", "24/7 customer support and roadside assistance", "Hassle-free booking and delivery process"]
-  },
+    ],
+         industriesTitle: "Where We Provide Valet Services",
+
+    industriesLeft: ["Residential Areas", "Commercial Offices", "Shopping Centres"],
+    industriesRight: ["Hotels & Resorts", "Restaurants & Cafés", "Theatres & Entertainment Venues"],
+    whyChooseTitle: "Benefits Of Choosing Green Oasis",
+reasons: [
+    { text: "Choose rental durations that suit your personal or business requirements.", icon: valetIcon15 },
+    { text: "Enjoy comfortable and well-maintained vehicles for your journeys.", icon: valetIcon16 },
+    { text: "Simplify daily commuting, business travel, and personal trips.", icon: valetIcon17 },
+    { text: "Rental options suitable for individuals, professionals, and companies.", icon: valetIcon18 },
+    { text: "Receive assistance throughout your rental experience.", icon: valetIcon19 },
+   
+  ],  },
   "mt-autozone": {
     title: "MT Autozone",
     image: mtAutozoneImg,

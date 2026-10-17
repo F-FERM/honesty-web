@@ -34,7 +34,7 @@ const COMPANIES: Company[] = [
   {
     title: "World Motors",
     description:
-      "World Motors specializes in professional automotive appearance solutions including professional car detailing, polishing, ceramic coating, and window tinting, with dedicated B2B support for garages and automotive businesses across the UAE.",
+      "World Motors specializes in professional automotive appearance solutions including professional car detailing, polishing,Interior and Fabric Protection, and window tinting, with dedicated B2B support for garages and automotive businesses across the UAE.",
     image: worldMotorsImg,
     href: "/companies/world-motors",
   },
@@ -50,7 +50,7 @@ const COMPANIES: Company[] = [
     description:
       "MT Autozone specializes in professional car polishing and detailing specialists focused on enhancing vehicle appearance through quality workmanship, careful detailing processes, and premium finishing solutions for customers seeking a cleaner, refined, showroom ready appearance.",
     image: mtAutozoneImg,
-    href: "https://mtautozone.com",
+    href: "https://mtautozone.com/",
     external: true,
   },
 ];
@@ -98,6 +98,7 @@ export default function Companies() {
             font-poppins
             text-black
             text-[clamp(30px,4vw,46px)]
+            mb-2
           "
           style={{
             fontWeight: 600,
@@ -170,18 +171,22 @@ export default function Companies() {
             {/* ======================================================
                 IMAGE
             ====================================================== */}
-            <Image
-              src={company.image}
-              alt={company.title}
-              fill
-              sizes="(min-width: 1024px) 425px, (min-width: 640px) 50vw, 100vw"
-              className="
-                absolute
-                inset-0
-                z-0
-                object-cover
-              "
-            />
+          <Image
+  src={company.image}
+  alt={company.title}
+  fill
+  sizes="(min-width: 1024px) 425px, (min-width: 640px) 50vw, 100vw"
+  className="
+    absolute
+    inset-0
+    z-0
+    object-cover
+    transition-transform
+    duration-500
+    ease-out
+    group-hover:scale-110
+  "
+/>
 
             {/* ======================================================
                 BASE GRADIENT
@@ -282,11 +287,12 @@ export default function Companies() {
                   className="
                     font-poppins
                     overflow-hidden
-                    text-[14px]
+                    text-[16px]
                     leading-[1.6]
                     text-[#C2C2C2]
                     sm:text-base
                     sm:leading-6
+                    font-normal
                   "
                   style={{
                     fontWeight: 400,

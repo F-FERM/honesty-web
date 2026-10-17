@@ -138,15 +138,29 @@ export default function OurCleaningServices({
                   `}
                 >
                   <div className="overflow-hidden">
-                    <p
-                      className="font-poppins max-w-[960px] pb-5 pr-8 text-[#6E6E6E] text-[14px] leading-[1.7] sm:pb-6 sm:pr-12 sm:text-[16px] sm:leading-[1.6] lg:text-[18px]"
-                      style={{
-                        fontWeight: 400,
-                        letterSpacing: "0%",
-                      }}
-                    >
-                      {service.description}
-                    </p>
+                  <p
+  className="
+    font-poppins
+    w-full
+    max-w-[1200px]
+    pb-5
+    pr-8
+    text-[#6E6E6E]
+    text-[14px]
+    leading-[1.7]
+    sm:pb-6
+    sm:pr-12
+    sm:text-[16px]
+    sm:leading-[1.6]
+    lg:text-[18px]
+  "
+  style={{
+    fontWeight: 400,
+    letterSpacing: "0%",
+  }}
+>
+  {service.description}
+</p>
                   </div>
                 </div>
               </div>

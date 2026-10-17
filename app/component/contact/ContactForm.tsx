@@ -6,8 +6,6 @@ import type { StaticImageData } from "next/image";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 
-import api from "@/lib/axios";
-
 import phoneIcon from "../../../public/images/contact/phone.png";
 import phoneHoverIcon from "../../../public/images/contact/hoverphone.png";
 import mailIcon from "../../../public/images/contact/email.png";
@@ -40,7 +38,7 @@ const INITIAL_FORM: ContactFormData = {
   message: "",
 };
 
-const ICON_SIZE = 26;
+const ICON_SIZE = 36;
 
 const INFO_CARDS: InfoCard[] = [
   {
@@ -71,15 +69,15 @@ const INFO_CARDS: InfoCard[] = [
 
 // ================= HELPERS =================
 
-function extractErrorMessage(err: unknown, fallback: string): string {
-  const e = err as {
-    response?: { data?: { message?: string | string[] } };
-  };
-  const msg = e?.response?.data?.message;
-  if (Array.isArray(msg)) {
-    return msg.length > 0 ? msg[0] : fallback;
+async function extractFetchError(res: Response, fallback: string): Promise<string> {
+  try {
+    const data = await res.json();
+    const msg = data?.message;
+    if (Array.isArray(msg)) return msg.length > 0 ? msg[0] : fallback;
+    return msg || fallback;
+  } catch {
+    return fallback;
   }
-  return msg || fallback;
 }
 
 // ================= FORM FIELD =================
@@ -212,17 +210,27 @@ export default function GetInTouch() {
         message: form.message.trim(),
       };
 
-      await api.post("/contact/submit", payload);
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const errMsg = await extractFetchError(
+          res,
+          "Failed to send message. Please try again.",
+        );
+        toast.error(errMsg, { id: toastId });
+        return;
+      }
 
       toast.success("Message sent successfully! We'll get back to you soon.", {
         id: toastId,
       });
       setForm(INITIAL_FORM);
-    } catch (err: unknown) {
-      toast.error(
-        extractErrorMessage(err, "Failed to send message. Please try again."),
-        { id: toastId },
-      );
+    } catch {
+      toast.error("Failed to send message. Please try again.", { id: toastId });
     } finally {
       setSubmitting(false);
     }
@@ -347,70 +355,66 @@ export default function GetInTouch() {
           </p>
 
           {/* ================= 2x2 CARD GRID ================= */}
-          <div className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 cursor-pointer">
-            {INFO_CARDS.map((card) => (
-              <div
-                key={card.title}
-                className="
-                  group
-                  flex min-w-0 flex-col items-center justify-center gap-2 text-center
-                  rounded-[20px] bg-white
-                  shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)]
-                  px-6 py-6 sm:px-[35px] sm:py-[25px]
-                  lg:px-5 xl:px-[35px]
-                  transition-colors duration-300
-                  hover:bg-[#0D85CC]
-                "
-              >
-                <span
-                  aria-hidden="true"
-                  className="relative block h-[26px] w-[26px] shrink-0"
-                >
-                  <Image
-                    src={card.icon}
-                    alt=""
-                    width={ICON_SIZE}
-                    height={ICON_SIZE}
-                    className="absolute inset-0 h-full w-full object-contain transition-all duration-300 group-hover:scale-90 group-hover:opacity-0"
-                  />
-                  <Image
-                    src={card.hoverIcon}
-                    alt=""
-                    width={ICON_SIZE}
-                    height={ICON_SIZE}
-                    className="absolute inset-0 h-full w-full scale-90 object-contain opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100"
-                  />
-                </span>
+         {/* ================= 2x2 CARD GRID ================= */}
+<div className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2">
+  {INFO_CARDS.map((card) => (
+    <div
+      key={card.title}
+      className="
+        group
+        flex w-full min-w-0 cursor-pointer flex-col items-center justify-center gap-[10px] text-center
+        min-h-[211px] rounded-[20px] bg-white
+        shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)]
+        px-5 py-6
+        sm:max-w-[353px] sm:px-[35px] sm:py-[25px]
+        lg:px-4
+        xl:px-[35px]
+        transition-colors duration-300
+        hover:bg-[#0D85CC]
+      "
+    >
+      {/* Icon: 36 x 36 (32 x 32 on very small phones) */}
+      <span
+        aria-hidden="true"
+        className="relative block h-8 w-8 shrink-0 sm:h-9 sm:w-9"
+      >
+        <Image
+          src={card.icon}
+          alt=""
+          width={ICON_SIZE}
+          height={ICON_SIZE}
+          className="absolute inset-0 h-full w-full object-contain transition-all duration-300 group-hover:scale-90 group-hover:opacity-0"
+        />
+        <Image
+          src={card.hoverIcon}
+          alt=""
+          width={ICON_SIZE}
+          height={ICON_SIZE}
+          className="absolute inset-0 h-full w-full scale-90 object-contain opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100"
+        />
+      </span>
 
-                <h3
-                  className="font-poppins text-[#08507A] text-[16px] transition-colors duration-300 group-hover:text-white sm:text-[18px]"
-                  style={{
-                    fontWeight: 600,
-                    lineHeight: "100%",
-                    letterSpacing: "0%",
-                  }}
-                >
-                  {card.title}
-                </h3>
+      <h3
+        className="font-poppins text-[#08507A] text-[16px] transition-colors duration-300 group-hover:text-white sm:text-[18px]"
+        style={{ fontWeight: 600, lineHeight: "100%", letterSpacing: "0%" }}
+      >
+        {card.title}
+      </h3>
 
-                <div className="flex w-full min-w-0 flex-col gap-0.5">
-                  {card.lines.map((line, i) => (
-                    <span
-                      key={i}
-                      className="font-poppins text-black text-[13px] [overflow-wrap:anywhere] transition-colors duration-300 sm:text-[14px]"
-                      style={{
-                        fontWeight: 400,
-                        lineHeight: "150%",
-                        letterSpacing: "0%",
-                      }}
-                    >
-                      {line}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+      <div className="flex w-full min-w-0 flex-col gap-0.5">
+        {card.lines.map((line, i) => (
+          <span
+            key={i}
+            className="font-poppins text-black text-[13px] [overflow-wrap:anywhere] transition-colors duration-300 sm:text-[14px]"
+            style={{ fontWeight: 400, lineHeight: "150%", letterSpacing: "0%" }}
+          >
+            {line}
+          </span>
+        ))}
+      </div>
+    </div>
+  ))}
+</div>
         </div>
       </div>
     </section>

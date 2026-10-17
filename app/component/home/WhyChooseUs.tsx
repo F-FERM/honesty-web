@@ -175,16 +175,16 @@ export default function WhyChoose() {
               <div
                 className="
                   flex
-                  h-[52px]
-                  w-[52px]
+                  h-[58px]
+                  w-[58px]
                   shrink-0
                   items-center
                   justify-center
                   rounded-[10px]
                   bg-[#08507A]
                   p-[6px]
-                  sm:h-[62px]
-                  sm:w-[62px]
+                  sm:h-[68px]
+                  sm:w-[68px]
                 "
               >
                 <Image
@@ -196,7 +196,7 @@ export default function WhyChoose() {
                   className="h-full w-full object-contain"
                 />
               </div>
-
+ 
               {/* Text: gap 5 */}
               <div className="flex min-w-0 flex-col gap-[5px]">
                 <h4
@@ -223,6 +223,7 @@ export default function WhyChoose() {
                     text-[14px]
                     leading-[1.4]
                     sm:text-base
+                    mt-2
                   "
                   style={{ fontWeight: 400 }}
                 >
